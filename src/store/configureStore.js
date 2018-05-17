@@ -1,16 +1,32 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 // Reducers
+import auth from '../reducers/auth';
+import { requestPasswordReset, submitPasswordReset } from '../reducers/password-reset';
 
-const logger = createLogger();
+// const logger = createLogger();
 /**
  * @var {function} rootReducer - The result of the combineReducers helper function,
  * which turns an object whose values are different reducing functions into a single reducing
  * function you can pass to createStore.
  */
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  auth,
+  requestPasswordReset,
+  submitPasswordReset,
+});
 const initialState = {};
+
+const addPromiseSupportToDispatch = (store) => {
+  const rawDispatch = store.dispatch;
+  return (action) => {
+    if (typeof action.then === 'function') {
+      return action.then(rawDispatch);
+    }
+    return rawDispatch(action);
+  };
+};
 
 /**
  * Takes the root reducer and initial state, and works
@@ -24,7 +40,7 @@ export default function configureStore() {
       rootReducer,
       initialState,
       compose(
-        applyMiddleware(thunkMiddleware, logger),
+        applyMiddleware(thunkMiddleware),
         window.devToolsExtension ? window.devToolsExtension() : f => f
       )
     );
@@ -35,6 +51,8 @@ export default function configureStore() {
       compose(applyMiddleware(thunkMiddleware), f => f)
     );
   }
+
+  store.dispatch = addPromiseSupportToDispatch(store);
 
   return store;
 }

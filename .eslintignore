@@ -1,0 +1,8 @@
+webpack/*
+karma.conf.js
+tests.webpack.js
+*.test.js
+node_modules/**
+doc/**
+coverage/**
+build/**
