@@ -1,0 +1,16 @@
+html, body, #root {
+  height: 100%; }
+
+html, body {
+  overflow-x: hidden; }
+
+a {
+  text-decoration: none;
+  color: inherit; }
+
+/**
+ * Foundation for Sites by ZURB
+ * Version 6.4.1
+ * foundation.zurb.com
+ * Licensed under MIT Open Source
+ */

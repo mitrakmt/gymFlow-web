@@ -1,0 +1,54 @@
+{
+  "name": "GymFlow-Web",
+  "description": "Web application for GymFlow",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "private": true,
+  "babel": {
+    "presets": [
+      "react",
+      "es2015"
+    ]
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "classnames": "^2.2.5",
+    "cors": "^2.8.4",
+    "express": "^4.15.3",
+    "foundation-sites": "^6.4.1",
+    "helmet": "^3.6.1",
+    "history": "^4.6.3",
+    "jquery": "^3.2.1",
+    "material-ui": "^0.18.6",
+    "morgan": "^1.8.2",
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "react-scripts": "1.0.10",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.7.2",
+    "redux-async-connect": "^1.0.0-rc4",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "include-media": "^1.4.9",
+    "node-sass": "^4.5.3",
+    "node-sass-chokidar": "^0.0.3",
+    "npm-run-all": "^4.0.2",
+    "redux-devtools": "^3.4.0",
+    "sass-loader": "^6.0.6"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start": "npm-run-all -p watch-css start-js",
+    "start-js": "react-scripts start",
+    "build": "npm run build-css && react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
