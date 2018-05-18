@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import buttonStyles from 'shared-components/mui/buttonStyles';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
 import { isSafari } from 'utils/browserDetector';
-import muiTheme from 'shared-components/mui/muiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import PropTypes from 'prop-types';
 import queryString from 'query-string';
-import RaisedButton from 'material-ui/RaisedButton';
-import removeReadOnlyProp from 'utils/uiUtils';
 import { submitPasswordReset } from 'actions/password-reset';
-import TextField from 'material-ui/TextField';
-import updateLocalState from 'shared-components/inputStateUpdate';
 // Direct path imports
 import key from '../../../../images/key.png';
 import './submit-password.css';
@@ -73,11 +66,15 @@ class SubmitPassword extends Component {
     return formData;
   }
 
+  updateLocalState = () => {
+
+  }
+
   /**
    * Updates the local state of Login Component.
   */
   inputChanged(event) {
-    updateLocalState(event, this);
+    this.updateLocalState(event, this);
     const password = event.target.value;
     const uppercaseRegex = password.match(/[A-Z]/g);
     const lowercaseRegex = password.match(/[a-z]/g);
@@ -127,20 +124,16 @@ class SubmitPassword extends Component {
   render() {
     return (
       <div className="column submitPasswordContainer">
-        <MuiThemeProvider muiTheme={muiTheme}>
           <div style={styles.container} className="row align-center">
             <div className="submitPasswordContainer-formContainer medium-12 large-centered column">
               <img src={key} alt="key" />
               <h1 className="submitPasswordContainer-formContainer-header">RESET PASSWORD</h1>
-              <TextField
+              <input
                 id="password"
                 className="submitPasswordContainer-input-text"
-                hintStyle={{ color: muiTheme.palette.accent3Color }}
-                floatingLabelStyle={{ color: muiTheme.palette.alternateTextColor }}
                 floatingLabelText="New Password"
                 type="password"
                 onChange={this.inputChanged}
-                onFocus={removeReadOnlyProp}
                 readOnly
                 autoFocus
               />
@@ -168,18 +161,14 @@ class SubmitPassword extends Component {
                 this.state.invalidTokenError &&
                 <p className="color-warning">The password reset link you are using is no longer valid. Please request a new one.</p>
               }
-              <RaisedButton
+              <button
                 className={`submitPasswordContainer-formContainer-submitButton ${this.state.passwordTypeValidation && this.state.passwordLengthValidation && 'submitPasswordContainer-formContainer-submitButton-show'}`}
-                buttonStyle={buttonStyles.buttonStyle}
-                labelStyle={buttonStyles.buttonLabelStyle}
                 label={'Continue'}
                 onTouchTap={this.handlePasswordSubmit}
                 secondary={false}
-                style={buttonStyles.containerStyle}
               />
             </div>
           </div>
-        </MuiThemeProvider>
       </div>
     );
   }

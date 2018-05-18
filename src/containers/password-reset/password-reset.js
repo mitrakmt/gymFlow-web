@@ -30,9 +30,9 @@ class PasswordReset extends Component {
     return (
       <div className="passwordReset">
         <Switch>
-          <Route path="/en/passwordreset/request" component={Request} />
-          <Route path="/en/passwordreset/sent" component={Sent} />
-          <Route path="/en/passwordreset/submit" component={SubmitPassword} />
+          <Route path="/passwordreset/request" component={Request} />
+          <Route path="/passwordreset/sent" component={Sent} />
+          <Route path="/passwordreset/submit" component={SubmitPassword} />
         </Switch>
       </div>
     );

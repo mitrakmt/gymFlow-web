@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
-import buttonStyles from 'shared-components/mui/buttonStyles';
 import { connect } from 'react-redux';
-import muiTheme from 'shared-components/mui/muiTheme';
 import PropTypes from 'prop-types';
 import { requestPasswordReset } from 'actions/password-reset';
-import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import updateLocalState from 'shared-components/inputStateUpdate';
-import ValidateInput from 'shared-components/validateInput';
 // Direct path imports
 import envelope from '../../../../images/envelope.png';
 import './request.css';
@@ -47,11 +41,15 @@ class Request extends Component {
     return formData;
   }
 
+  updateLocalState = () => {
+    
+  }
+
   /**
    * Updates the local state of Login Component.
   */
   inputChanged(event) {
-    updateLocalState(event, this);
+    this.updateLocalState(event, this);
   }
 
   handleEmailSubmit() {
@@ -79,28 +77,17 @@ class Request extends Component {
               <p className="requestContainer-formContainer-subHeader">Enter the email associated with your Esports Arena account, then click Continue.  We will email you a link to a secret level where you can summon a new password.</p>
             </div>
             <div>
-              <ValidateInput
-                name="email"
-                value={this.state.email}
-                context={this}
-              >
-                <TextField
-                  id="email"
-                  className="requestContainer-input-text"
-                  floatingLabelStyle={{ color: muiTheme.palette.alternateTextColor }}
-                  floatingLabelText="Email"
-                  hintStyle={{ color: muiTheme.palette.accent3Color }}
-                  onBlur={this.inputChanged}
-                  style={{ width: '300px' }}
-                />
-              </ValidateInput>
-              <RaisedButton
-                buttonStyle={buttonStyles.buttonStyle}
-                labelStyle={buttonStyles.buttonLabelStyle}
+              <input
+                id="email"
+                className="requestContainer-input-text"
+                floatingLabelText="Email"
+                onBlur={this.inputChanged}
+                style={{ width: '300px' }}
+              />
+              <button
                 label="Continue"
                 onTouchTap={this.handleEmailSubmit}
                 secondary={false}
-                style={buttonStyles.containerStyle}
               />
             </div>
           </div>
