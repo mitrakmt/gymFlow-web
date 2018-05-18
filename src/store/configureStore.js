@@ -3,6 +3,7 @@ import thunkMiddleware from 'redux-thunk';
 // import { createLogger } from 'redux-logger';
 // Reducers
 import auth from '../reducers/auth';
+import user from '../reducers/user';
 import { requestPasswordReset, submitPasswordReset } from '../reducers/password-reset';
 
 // const logger = createLogger();
@@ -13,6 +14,7 @@ import { requestPasswordReset, submitPasswordReset } from '../reducers/password-
  */
 const rootReducer = combineReducers({
   auth,
+  user,
   requestPasswordReset,
   submitPasswordReset,
 });
