@@ -20,27 +20,22 @@ const asyncLogin = asyncLoader(() => require('../../containers/login/login'));
 const asyncSignup = asyncLoader(() => require('../../containers/signup/signup'));
 const asyncPasswordReset = asyncLoader(() => require('../../containers/password-reset/password-reset'));
 const asyncProfile = asyncLoader(() => require('../../containers/profile/profile'));
+const asyncEmailValidation = asyncLoader(() => require('../../containers/email-validation/emailValidation'))
 
 class App extends Component {
-  static get propTypes() {
-    return {
-      dispatch: PropTypes.func.isRequired,
-      location: PropTypes.object.isRequired,
-      history: PropTypes.object.isRequired,
-    };
+  static propTypes = {
+    dispatch: PropTypes.func.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   }
 
-  static get defaultProps() {
-    return {
+  static defaultProp = {
 
-    };
   }
 
-  static get contextTypes() {
-    return {
-      history: PropTypes.object,
-      router: PropTypes.object
-    };
+  static contextTypes = {
+    history: PropTypes.object,
+    router: PropTypes.object
   }
 
   constructor(props) {
@@ -55,10 +50,11 @@ class App extends Component {
     return (
       <ScrollToTop history={this.props.history}>
         <div className="app">
-          {/* <Header displayLobbyClosedAlert={this.displayLobbyClosedAlert} joinMatch={this.requestJoin} viewDashboard={this.viewDashboard} viewProfile={this.viewProfile} history={this.context.router} /> */}
+          <Header />
           <div className="app-container">
             <Switch>
               <Route path="/signup" component={asyncSignup} />
+              <Route path="/emailvalidation/:token" component={asyncEmailValidation} />
               <Route path="/login" component={asyncLogin} location={this.props.location} />
               <Route path="/passwordreset" component={asyncPasswordReset} />
               <PrivateRoute path="/profile" component={asyncProfile} />
@@ -66,7 +62,7 @@ class App extends Component {
               <Route component={asyncLogin} />
             </Switch>
           </div>
-          {/* <Footer actions={this.actions} tosOpen={this.state.tosOpen} tosDialogClose={this.tosDialogClose} tosDialogOpen={this.tosDialogOpen} /> */}
+          <Footer />
         </div>
       </ScrollToTop>
     );

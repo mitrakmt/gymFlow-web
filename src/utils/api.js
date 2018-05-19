@@ -38,7 +38,7 @@ export function callApi(
  * @param {Object} configObject An object containing configuration options for the request.
  * @returns {Promise} The server data or error response.
  */
-export function callApiWithoutjWT(configObject) {
+export function request(configObject) {
   const token = loadToken();
   const config = configObject || {};
   if (!config.headers) {
