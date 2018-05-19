@@ -77,7 +77,7 @@ import {
    */
   export function login(email, password) {
     const config = {
-      url: `${process.env.REACT_APP_API_DOMAIN}/cp/auth/login`,
+      url: `${process.env.REACT_APP_API_DOMAIN}/user/login`,
       method: 'post',
       headers: {
         Accept: 'application/json',
