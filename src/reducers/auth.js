@@ -63,6 +63,7 @@ import {
           ...state,
           loggingOut: false,
           profile: null,
+          user: {},
           logoutError: action.error
         };
       case REGISTER_REQUEST:

@@ -119,20 +119,16 @@ import {
     );
   }
   
-  function logoutRequest(user) {
+  function logoutRequest() {
     return {
-      type: LOGOUT_REQUEST,
-      user
+      type: LOGOUT_REQUEST
     };
   }
   
   function logoutSuccess(payload) {
     removeTokens();
     return {
-      type: LOGOUT_SUCCESS,
-      access_token: payload.access_token,
-      refresh_token: payload.refresh_token,
-      userId: payload.user_id
+      type: LOGOUT_SUCCESS
     };
   }
   
@@ -147,7 +143,6 @@ import {
    * Removes the locally stored refresh and access tokens and calls the logout API.
    */
   export function logout() {
-    const refresh_token = localStorage.getItem(REFRESH_TOKEN).toString();
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
     const config = {
       url: `${process.env.REACT_APP_API_DOMAIN}/user/logout`,
@@ -156,11 +151,10 @@ import {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `${accessToken}`
-      },
-      data: {
-        refresh_token
       }
     };
+
+    console.log('logging out')
   
     return callApiWithJWT(
       config,
@@ -243,13 +237,5 @@ import {
    */
   export function saveUserToStore() {
     return dispatch => dispatch(saveUserSuccess());
-  }
-  
-  /**
-   * [Beta] Haven't used this too much, may have bugs.
-   * Clears the user from the redux store.
-   */
-  export function clearUserInStore() {
-    return dispatch => dispatch(clearUserSuccess());
   }
   

@@ -202,7 +202,6 @@ export function getUserId() {
  * Removes the access token, refresh token, and user ID from local storage.
  */
 export function removeTokens() {
-  localStorage.removeItem(REFRESH_TOKEN);
   localStorage.removeItem(USER_ID);
   localStorage.removeItem(ACCESS_TOKEN);
 }

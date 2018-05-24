@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800");
 html, body, #root {
   height: 100%; }
 
@@ -7,6 +8,9 @@ html, body {
 a {
   text-decoration: none;
   color: inherit; }
+
+.row {
+  display: flex; }
 
 /**
  * Foundation for Sites by ZURB

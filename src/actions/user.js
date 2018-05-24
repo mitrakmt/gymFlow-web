@@ -60,13 +60,12 @@ export function getUserInfo() {
 export function clearUserInfo() {
   return {
     type: CLEAR_USER,
-    user: {}
+    data: {}
   };
 }
 
 
 function userInfoFailure(error) {
-  console.log('userInfoFailure error', error)
   return {
     type: POST_USER_FAILURE,
     error: error,
@@ -81,7 +80,6 @@ function userInfoRequest() {
 }
 
 function userInfoSuccess(user) {
-  console.log('user', user)
   return {
     type: POST_USER_SUCCESS,
     user

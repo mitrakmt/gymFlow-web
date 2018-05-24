@@ -111,8 +111,8 @@ class Login extends Component {
 
     this.props.dispatch(login(this.state.email, this.state.password))
       .then((response) => {
+        this.toggleLoggingIn();
         if (response.type === 'LOGIN_SUCCESS') {
-          this.toggleLoggingIn();
           this.props.dispatch(getUserInfo());
           this.context.router.history.push('/');
         }

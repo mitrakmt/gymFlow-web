@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { getUserInfo } from 'actions/user';
+
 import './profile.css';
 
 
@@ -25,15 +27,17 @@ class Profile extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
+    this.state = {};
+  }
 
-    };
+  componentWillMount() {
+    this.props.dispatch(getUserInfo(this.props.auth.profile.id))
   }
 
   render() {
     return (
       <div className="profile">
-
+        <h1>Profile</h1>
       </div>
     );
   }

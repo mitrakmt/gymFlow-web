@@ -49,7 +49,7 @@ class App extends Component {
   componentWillMount() {
     getAuth()
     if (this.props.auth.profile)  {
-      this.props.dispatch(getUserInfo(this.props.auth.profile.id))
+      this.props.dispatch(getUserInfo())
     }
   }
 

@@ -21,7 +21,8 @@ import {
         };
       case CLEAR_USER:
         return {
-          data: Object.assign(state, { user: {}, type: 'Clear user info' })
+          ...state,
+          data: {}
         };
       default:
         return state;
