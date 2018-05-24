@@ -31,7 +31,6 @@ class Workouts extends Component {
   }
 
   componentWillMount() {
-      console.log('getWorkouts', getWorkouts)
       this.props.dispatch(getWorkouts())
   }
 
@@ -39,6 +38,14 @@ class Workouts extends Component {
     return (
       <div className="workouts">
         <h1>Workouts</h1>
+        {
+            this.props.workouts.data.workouts.map(workout => (
+                <h1>{workout.name}</h1>
+            ))
+        }
+        {
+            this.props.workouts.data.workouts.length === 0 && <h3>No workouts to show</h3>
+        }
       </div>
     );
   }

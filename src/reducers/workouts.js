@@ -4,7 +4,7 @@ import {
     GET_WORKOUTS_FAILURE
   } from '../actions/workouts';
   
-  export default function workouts(state = { data: {} }, action) {
+  export default function workouts(state = { data: { workouts: [] } }, action) {
     switch (action.type) {
       case GET_WORKOUTS_REQUEST:
         return Object.assign({}, state);

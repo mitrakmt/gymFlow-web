@@ -68,8 +68,8 @@ class App extends Component {
               <PrivateRoute path="/profile" component={asyncProfile} />
               <PrivateRoute exact path="/profile/:username" component={asyncProfile} />
               <PrivateRoute exact path="/workouts" component={asyncWorkouts} />
+              <PrivateRoute exact path="/workouts/create" component={asyncCreateWorkout} />
               <PrivateRoute exact path="/loggedworkouts" component={asyncLoggedWorkouts} />
-              <PrivateRoute exact path="/create" component={asyncCreateWorkout} />
               <Route component={asyncHome} />
             </Switch>
           </div>

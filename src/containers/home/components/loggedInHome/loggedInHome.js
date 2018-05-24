@@ -8,7 +8,7 @@ const LoggedInHome = props => (
     <div className="loggedInHome">
         <h1>Logged in</h1>
         <div>
-            <p><Link to="/create">Create workout</Link></p>
+            <p><Link to="/workouts/create">Create workout</Link></p>
             <p><Link to="/workouts">View Workouts</Link></p>
             <p><Link to="/loggedworkouts">Logged Workouts</Link></p>
         </div>

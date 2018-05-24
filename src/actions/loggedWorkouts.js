@@ -7,9 +7,9 @@ import {
   callApiWithJWT
 } from '../utils/api';
 
-export const GET_LOGGED_WORKOUTS_REQUEST = 'GET_WORKOUTS_REQUEST';
-export const GET_LOGGED_WORKOUTS_SUCCESS = 'GET_WORKOUTS_SUCCESS';
-export const GET_LOGGED_WORKOUTS_FAILURE = 'GET_WORKOUTS_FAILURE';
+export const GET_LOGGED_WORKOUTS_REQUEST = 'GET_LOGGED_WORKOUTS_REQUEST';
+export const GET_LOGGED_WORKOUTS_SUCCESS = 'GET_LOGGED_WWORKOUTS_SUCCESS';
+export const GET_LOGGED_WORKOUTS_FAILURE = 'GET_LOGGED_WWORKOUTS_FAILURE';
 
 export function getLoggedWorkouts() {
   const config = {
@@ -23,9 +23,9 @@ export function getLoggedWorkouts() {
 
   return callApiWithJWT(
     config,
-    getWorkoutsRequest,
-    getWorkoutsSuccess,
-    getWorkoutsFailure
+    getLoggedWorkoutsRequest,
+    getLoggedWorkoutsSuccess,
+    getLoggedWorkoutsFailure
   );
 }
 
@@ -38,7 +38,7 @@ function getLoggedWorkoutsRequest() {
 function getLoggedWorkoutsSuccess(workouts) {
     return {
         type: GET_LOGGED_WORKOUTS_SUCCESS,
-        loggedWorkouts
+        workouts
     };
 }
   

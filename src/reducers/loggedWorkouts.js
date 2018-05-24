@@ -2,9 +2,9 @@ import {
     GET_LOGGED_WORKOUTS_REQUEST,
     GET_LOGGED_WORKOUTS_SUCCESS,
     GET_LOGGED_WORKOUTS_FAILURE
-  } from '../actions/workouts';
+  } from '../actions/loggedWorkouts';
   
-  export default function loggedWorkouts(state = { data: {} }, action) {
+  export default function loggedWorkouts(state = { data: { workouts: []} }, action) {
     switch (action.type) {
       case GET_LOGGED_WORKOUTS_REQUEST:
         return Object.assign({}, state);

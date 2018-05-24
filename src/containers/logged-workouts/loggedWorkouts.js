@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import { getLoggedWorkouts } from 'actions/loggedWorkouts';
+
 import './loggedWorkouts.css';
 
 
@@ -25,22 +27,31 @@ class LoggedWorkouts extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-
-    };
+    this.state = {};
   }
+
+  componentWillMount() {
+    this.props.dispatch(getLoggedWorkouts())
+}
 
   render() {
     return (
       <div className="loggedWorkouts">
-
+        {
+            this.props.loggedWorkouts.data.workouts.map(workout => (
+                <h3 key={workout.id}>{workout.name}</h3>
+            ))
+        }
+        {
+            this.props.loggedWorkouts.data.workouts.length === 0 && <h3>No logged workouts</h3>
+        }
       </div>
     );
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, loggedWorkouts }) {
+  return { auth, loggedWorkouts };
 }
 
 export default connect(mapStateToProps)(LoggedWorkouts);
