@@ -20,7 +20,6 @@ export function getWorkouts() {
       'Content-Type': 'application/json'
     }
   };
-  console.log('yip here')
 
   return callApiWithJWT(
     config,
@@ -37,7 +36,6 @@ function getWorkoutsRequest() {
 }
 
 function getWorkoutsSuccess(workouts) {
-    console.log('workouts', workouts)
     return {
         type: GET_WORKOUTS_SUCCESS,
         workouts
@@ -46,7 +44,6 @@ function getWorkoutsSuccess(workouts) {
   
 
 function getWorkoutsFailure(error) {
-    console.log('workoutsFailure error', error)
     return {
         type: GET_WORKOUTS_FAILURE,
         error: error,

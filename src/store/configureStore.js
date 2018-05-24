@@ -5,6 +5,7 @@ import thunkMiddleware from 'redux-thunk';
 import auth from '../reducers/auth';
 import user from '../reducers/user';
 import workouts from '../reducers/workouts';
+import loggedWorkouts from '../reducers/loggedWorkouts';
 import { requestPasswordReset, submitPasswordReset } from '../reducers/password-reset';
 
 // const logger = createLogger();
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   auth,
   user,
   workouts,
+  loggedWorkouts,
   requestPasswordReset,
   submitPasswordReset,
 });
