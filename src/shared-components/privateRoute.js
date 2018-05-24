@@ -32,15 +32,9 @@ class PrivateRoute extends Component {
 
   componentWillMount() {
     this.authenticated = getAuth();
-    if (this.authenticated.hasValidToken) {
-      // If the local storage User ID doesn't match what's in the Redux store,
-      // refresh local storage
-      if (!this.props.user || (this.props.user !== this.props.user && getUserId() !== this.props.user)) {
-        this.props.dispatch(refreshLogin())
-          .then(() => {
-            this.props.dispatch(getUserInfo());
-          });
-      }
+    // TODO: need to validate token here too
+    if (this.authenticated) {
+      this.props.dispatch(getUserInfo());
     }
   }
 
@@ -51,12 +45,12 @@ class PrivateRoute extends Component {
       <Route
         {...this.props.rest}
         render={props => (
-          this.authenticated.hasValidToken ? (
+          this.authenticated ? (
             <ChildComponent {...props} />
           ) : (
               <Redirect // eslint-disable-line
                 to={{
-                  pathname: '/en/login',
+                  pathname: '/login',
                   state: { from: props.location } // eslint-disable-line react/prop-types
                 }}
               />

@@ -22,7 +22,7 @@ export function saveUserInfo({ ...userInfo }) {
   // Remove any null, undefined, or empty strings from the request object
   const strippedObject = _omitBy(userInfo, val => _isNil(val) || val === '');
   const config = {
-    url: '/cp/member',
+    url: '/user',
     method: 'patch',
     header: {
       Accept: 'application/json',
@@ -41,8 +41,8 @@ export function saveUserInfo({ ...userInfo }) {
 
 export function getUserInfo() {
   const config = {
-    url: '/cp/member',
-    method: 'get',
+    url: '/user',
+    method: 'GET',
     header: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
@@ -66,11 +66,11 @@ export function clearUserInfo() {
 
 
 function userInfoFailure(error) {
+  console.log('userInfoFailure error', error)
   return {
     type: POST_USER_FAILURE,
-    userInfoError: error.data.code,
-    error: error.data.errors,
-    errorMessage: error.data.message
+    error: error,
+    errorMessage: error.error
   };
 }
 
@@ -81,9 +81,10 @@ function userInfoRequest() {
 }
 
 function userInfoSuccess(user) {
+  console.log('user', user)
   return {
     type: POST_USER_SUCCESS,
-    user: user.data
+    user
   };
 }
 

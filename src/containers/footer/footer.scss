@@ -1,10 +1,12 @@
 .footer {
+    position: relative;
+    left: 0;
     bottom: 0;
+    right: 0;
     height: 60px;
     min-width: 100%;
     padding: 6px 0;
-    width: 100%;
-    background-color: black;
+    background-color: hsl(0, 0%, 98%);
     p {
       color: #A1A5A1;
       font-size: 11px;

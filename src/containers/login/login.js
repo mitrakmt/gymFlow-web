@@ -48,12 +48,12 @@ class Login extends Component {
    * them or shows failed login error.
   */
   componentWillReceiveProps(nextProps) {
-    if (nextProps.user) {
+    if (nextProps.auth.profile) {
       try {
-        const redirect = this.props.location.state.from.pathname || '/home';
+        const redirect = this.props.location.state.from.pathname || '/';
         this.context.router.history.push(redirect);
       } catch (err) {
-        this.context.router.history.push('/home');
+        this.context.router.history.push('/');
       }
     }
   }
@@ -112,9 +112,10 @@ class Login extends Component {
     this.props.dispatch(login(this.state.email, this.state.password))
       .then((response) => {
         if (response.type === 'LOGIN_SUCCESS') {
+          this.toggleLoggingIn();
           this.props.dispatch(getUserInfo());
+          this.context.router.history.push('/');
         }
-        this.toggleLoggingIn();
       });
   }
 
@@ -159,10 +160,9 @@ class Login extends Component {
                 <p className="color-warning">Incorrect email or password</p>
               }
               <button
-                loading={this.state.loggingIn}
+                disabled={this.state.loggingIn}
                 className="login__button"
                 label="Login"
-                secondary={false}
                 onTouchTap={this.handleLogin}
                 fullWidth
               />
@@ -178,11 +178,6 @@ class Login extends Component {
 }
 
 function mapStateToProps({ auth }) {
-  if (auth.user) {
-    return {
-      auth
-    };
-  }
   return { auth };
 }
 

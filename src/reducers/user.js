@@ -5,23 +5,23 @@ import {
     POST_USER_FAILURE
   } from '../actions/user';
   
-  export default function user(state = { response: {} }, action) {
+  export default function user(state = { data: {} }, action) {
     switch (action.type) {
       case POST_USER_REQUEST:
         return Object.assign({}, state);
       case POST_USER_SUCCESS:
         return Object.assign({}, state, {
           ...state,
-          response: action
+          data: action.user
         });
       case POST_USER_FAILURE:
         return {
           ...state,
-          response: action
+          data: action
         };
       case CLEAR_USER:
         return {
-          response: Object.assign(state, { user: {}, type: 'Clear user info' })
+          data: Object.assign(state, { user: {}, type: 'Clear user info' })
         };
       default:
         return state;

@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import './profile.css';
+import LoggedInHome from './components/loggedInHome/loggedInHome';
+import LoggedOutHome from './components/loggedOutHome/loggedOutHome';
 
+import './home.css';
 
-class Profile extends Component {
+class Home extends Component {
   static defaultProps = {
     user: null
   }
@@ -25,22 +27,25 @@ class Profile extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
-
-    };
+    this.state = {};
   }
 
   render() {
     return (
-      <div className="profile">
-
+      <div className="home"> 
+        {
+            this.props.auth.profile ?
+                <LoggedInHome /> :
+                <LoggedOutHome />
+        }
       </div>
     );
   }
 }
 
 function mapStateToProps({ auth }) {
-  return { auth };
+    console.log('profile', auth.profile)
+    return { auth };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(Home);

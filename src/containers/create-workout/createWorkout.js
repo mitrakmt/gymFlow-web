@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import './profile.css';
+import './createWorkout.css';
 
 
-class Profile extends Component {
+class CreateWorkout extends Component {
   static defaultProps = {
     user: null
   }
@@ -32,8 +32,8 @@ class Profile extends Component {
 
   render() {
     return (
-      <div className="profile">
-
+      <div className="createWorkout">
+        <h1>Create workout</h1>
       </div>
     );
   }
@@ -43,4 +43,4 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(CreateWorkout);

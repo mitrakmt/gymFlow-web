@@ -1,20 +1,8 @@
 @import '../../styles/variables';
 
-body {
-  background-color: $background-color;
-  min-height: 100%;
-}
-
-.app {
-  height: 100%;
-  &-container {
-    min-height: 95vh;
-  }
-}
-
-.fa {
-  margin-right: 5px;
-  margin-left: 15px;
+html, body, .app, .app-container {
+    height: 95vh;
+    min-height: 100%;
 }
 
 .divider {

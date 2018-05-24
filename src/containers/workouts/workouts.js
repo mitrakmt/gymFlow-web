@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import './profile.css';
+import { getWorkouts } from 'actions/workouts';
+
+import './workouts.css';
 
 
-class Profile extends Component {
+class Workouts extends Component {
   static defaultProps = {
     user: null
   }
@@ -25,22 +27,26 @@ class Profile extends Component {
   constructor(props, context) {
     super(props, context);
 
-    this.state = {
+    this.state = {};
+  }
 
-    };
+  componentWillMount() {
+      console.log('getWorkouts', getWorkouts)
+      this.props.dispatch(getWorkouts())
   }
 
   render() {
     return (
-      <div className="profile">
-
+      <div className="workouts">
+        <h1>Workouts</h1>
       </div>
     );
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, workouts }) {
+    console.log('workouts', workouts)
+  return { auth, workouts };
 }
 
-export default connect(mapStateToProps)(Profile);
+export default connect(mapStateToProps)(Workouts);

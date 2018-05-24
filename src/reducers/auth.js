@@ -13,32 +13,37 @@ import {
   import { loadUserProfile } from '../utils/api';
   
   const initialState = {
-    user: null,
+    profile: null,
     loggingIn: false,
     loggingOut: false,
     loginError: null
   };
   
   function initializeState() {
-    const userProfile = loadUserProfile();
+    const userProfile = {
+      profile: loadUserProfile()
+    };
     return Object.assign({}, initialState, userProfile);
   }
   
   export default function auth(state = initializeState(), action = {}) {
     switch (action.type) {
       case LOGIN_REQUEST:
-        return Object.assign({}, state, { loggingIn: true });
+        return Object.assign({}, state, { 
+          loggingIn: true,
+          loginError: null
+        });
       case LOGIN_SUCCESS:
         return Object.assign({}, state, {
+          profile: action.profile,
           loggingIn: false,
-          user: action,
-          loginError: undefined
+          loginError: null
         });
       case LOGIN_FAILURE:
         return {
           ...state,
+          profile: null,
           loggingIn: false,
-          user: null,
           loginError: action.error
         };
       case LOGOUT_REQUEST:
@@ -50,14 +55,14 @@ import {
         return {
           ...state,
           loggingOut: false,
-          user: null,
+          profile: null,
           loginError: null
         };
       case LOGOUT_FAILURE:
         return {
           ...state,
           loggingOut: false,
-          user: null,
+          profile: null,
           logoutError: action.error
         };
       case REGISTER_REQUEST:
@@ -65,17 +70,17 @@ import {
       case REGISTER_SUCCESS:
         return Object.assign({}, state, {
           ...state,
-          user: action
+          profile: action.profile
         });
       case REGISTER_FAILURE:
         return {
           ...state,
-          user: action
+          profile: null
         };
       case 'CLEAR_USER_SUCCESS':
         return {
           ...state,
-          user: {}
+          profile: null
         };
       case 'SAVE_USER_SUCCESS':
         return {

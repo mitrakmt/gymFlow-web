@@ -37,14 +37,11 @@ import {
   }
   
   function loginSuccess(payload) {
-    if (payload.data) {
-      const accessToken = payload.data[ACCESS_TOKEN];
-      const refreshToken = payload.data[REFRESH_TOKEN];
-      const userId = payload.data[USER_ID];
+    if (payload.Authorization) {
+      const accessToken = payload.Authorization;
       const profile = decodeUserProfile(accessToken);
       setAccessToken(accessToken);
-      setRefreshToken(refreshToken);
-      setUserId(userId);
+      setUserId(profile.id);
       return {
         type: LOGIN_SUCCESS,
         profile
@@ -103,7 +100,7 @@ import {
    */
   export function refreshLogin(refresh_token = loadRefreshToken()) {
     const config = {
-      url: `${process.env.REACT_APP_API_DOMAIN}/cp/auth/verify`,
+      url: `${process.env.REACT_APP_API_DOMAIN}/user/verify`,
       method: 'post',
       headers: {
         Accept: 'application/json',
@@ -153,12 +150,12 @@ import {
     const refresh_token = localStorage.getItem(REFRESH_TOKEN).toString();
     const accessToken = localStorage.getItem(ACCESS_TOKEN);
     const config = {
-      url: `${process.env.REACT_APP_API_DOMAIN}/cp/auth/logout`,
-      method: 'post',
+      url: `${process.env.REACT_APP_API_DOMAIN}/user/logout`,
+      method: 'delete',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${accessToken}`
+        Authorization: `${accessToken}`
       },
       data: {
         refresh_token
@@ -189,12 +186,10 @@ import {
   }
   
   function registerSuccess(response) {
-    const accessToken = response.data[ACCESS_TOKEN];
-    const refreshToken = response.data[REFRESH_TOKEN];
-    const userId = response.data[USER_ID];
+    const accessToken = response.Authorization;
     const profile = decodeUserProfile(accessToken);
+    const userId = profile.id;
     setAccessToken(accessToken);
-    setRefreshToken(refreshToken);
     setUserId(userId);
     return {
       profile,
@@ -208,9 +203,9 @@ import {
    * @param {object} formData Should contain the email, password, first name, and last name.
    */
   export function registerUser(formData) {
-    const { email, password, first_name, last_name } = formData;
+    const { email, password, username } = formData;
     const config = {
-      url: '/cp/member',
+      url: '/user',
       method: 'post',
       header: {
         Accept: 'application/json',
@@ -219,8 +214,7 @@ import {
       data: {
         email,
         password,
-        first_name,
-        last_name
+        username
       }
     };
   

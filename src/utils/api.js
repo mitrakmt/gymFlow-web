@@ -44,7 +44,7 @@ export function request(configObject) {
   if (!config.headers) {
     config.headers = {};
   }
-  config.headers.Authorization = `Bearer ${token}`;
+  config.headers.Authorization = `${token}`;
 
   return axios.request(config)
     .then(res => res.data)
@@ -69,7 +69,7 @@ export function callApiWithJWT(
   if (!config.headers) {
     config.headers = {};
   }
-  config.headers.Authorization = `Bearer ${token}`;
+  config.headers.Authorization = `${token}`;
 
   return callApi(
     config,
@@ -156,7 +156,7 @@ export function nonActionApiWithJWT(config) {
     configObject.headers = {};
   }
 
-  configObject.headers.Authorization = `Bearer ${token}`;
+  configObject.headers.Authorization = `${token}`;
 
   return axios.request(configObject)
     .then(res => res.data)
