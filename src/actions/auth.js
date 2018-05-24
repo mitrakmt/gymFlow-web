@@ -202,8 +202,7 @@ import {
    * Registers a new user with the provided information.
    * @param {object} formData Should contain the email, password, first name, and last name.
    */
-  export function registerUser(formData) {
-    const { email, password, username } = formData;
+  export function registerUser(email, password, username) {
     const config = {
       url: '/user',
       method: 'post',

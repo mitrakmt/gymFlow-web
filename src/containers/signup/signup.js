@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { getUserInfo } from 'actions/user';
-import { login } from '../../actions/auth';
+import { registerUser } from '../../actions/auth';
 
 import './signup.css';
 
@@ -33,7 +33,8 @@ class Signup extends Component {
       emailError: '',
       emailTouched: false,
       password: '',
-      loggingIn: false
+      username: '',
+      signingUp: false
     };
   }
 
@@ -90,6 +91,12 @@ class Signup extends Component {
     }, this.validateEmail);
   }
 
+  updateUsername = (event) => {
+      this.setState({
+          username: event.target.value
+      })
+  }
+
   emailTouched = () => this.setState({
     emailTouched: true
   });
@@ -99,27 +106,27 @@ class Signup extends Component {
   */
   handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      this.handleLogin();
+      this.handleSignup();
     }
   }
 
   /**
    * Handles a login attempt by dispatching the login action.
   */
-  handleLogin = () => {
-    this.toggleLoggingIn();
+  handleSignup = () => {
+    this.toggleSigningUp();
 
-    this.props.dispatch(login(this.state.email, this.state.password))
+    this.props.dispatch(registerUser(this.state.email, this.state.password, this.state.username))
       .then((response) => {
         if (response.type === 'LOGIN_SUCCESS') {
           this.props.dispatch(getUserInfo());
         }
-        this.toggleLoggingIn();
+        this.toggleSigningUp();
       });
   }
 
-  toggleLoggingIn = () => this.setState({
-    loggingIn: !this.state.loggingIn
+  toggleSigningUp = () => this.setState({
+    signingUp: !this.state.signingUp
   });
 
   render() {
@@ -146,6 +153,18 @@ class Signup extends Component {
                 fullWidth
               />
               <input
+                id="username"
+                className="login-input-text"
+                floatingLabelText="Username"
+                onKeyPress={this.handleKeyPress}
+                hintText="yourUsername"
+                value={this.state.username}
+                onChange={this.updateUsername}
+                type="username"
+                errorText={this.state.usernameError}
+                fullWidth
+              />
+              <input
                 id="password"
                 className="login-input-text"
                 floatingLabelText="Password"
@@ -159,11 +178,11 @@ class Signup extends Component {
                 <p className="color-warning">Incorrect email or password</p>
               }
               <button
-                loading={this.state.loggingIn}
+                disabled={this.state.signingUp}
                 className="login__button"
                 label="Login"
                 secondary={false}
-                onTouchTap={this.handleLogin}
+                onTouchTap={this.handleSignup}
                 fullWidth
               />
             </div>

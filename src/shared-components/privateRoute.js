@@ -33,7 +33,8 @@ class PrivateRoute extends Component {
   componentWillMount() {
     this.authenticated = getAuth();
     // TODO: need to validate token here too
-    if (this.authenticated) {
+    console.log('this.authenticated', this.authenticated)
+    if (this.authenticated.hasValidToken) {
       this.props.dispatch(getUserInfo());
     }
   }
@@ -45,7 +46,7 @@ class PrivateRoute extends Component {
       <Route
         {...this.props.rest}
         render={props => (
-          this.authenticated ? (
+          this.authenticated.hasValidToken ? (
             <ChildComponent {...props} />
           ) : (
               <Redirect // eslint-disable-line
