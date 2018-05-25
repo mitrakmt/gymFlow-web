@@ -39,7 +39,9 @@ class LoggedWorkouts extends Component {
         <div className="loggedWorkouts">
             {
                 this.props.loggedWorkouts.data.workouts.map(workout => (
-                    <h3 key={workout.id}>{workout.name}</h3>
+                    <Link to={`loggedWorkouts/${workout.id}`}>
+                        <h3 key={workout.id}>{workout.name}</h3>
+                    </Link>
                 ))
             }
             {

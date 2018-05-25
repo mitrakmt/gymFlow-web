@@ -1,0 +1,16 @@
+.viewWorkout {
+    padding: 10px;
+
+    &-viewWorkoutTemplate {
+        &-name {
+            margin-bottom: 10px;
+            width: 300px;
+        }
+    }
+
+    &-bulkActions {
+        border-top: 1px solid gray;
+        margin-top: 20px;
+        padding-top: 10px;
+    }
+}

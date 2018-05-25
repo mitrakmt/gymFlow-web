@@ -30,6 +30,7 @@ const asyncWorkouts = asyncLoader(() => require('../../containers/workouts/worko
 const asyncLoggedWorkouts = asyncLoader(() => require('../../containers/logged-workouts/loggedWorkouts'));
 const asyncCreateWorkout = asyncLoader(() => require('../../containers/create-workout/createWorkout'));
 const asyncViewWorkout = asyncLoader(() => require('../../containers/view-workout/viewWorkout'));
+const asyncViewLoggedWorkout = asyncLoader(() => require('../../containers/view-logged-workout/viewLoggedWorkout'));
 
 class App extends Component {
   static propTypes = {
@@ -74,8 +75,9 @@ class App extends Component {
               <PrivateRoute exact path="/profile/:username" component={asyncProfile} />
               <PrivateRoute exact path="/workouts" component={asyncWorkouts} />
               <PrivateRoute exact path="/workouts/create" component={asyncCreateWorkout} />
-              <PrivateRoute path="/workouts/:workoutid" component={asyncViewWorkout} />
+              <PrivateRoute exact path="/workouts/:workoutid" component={asyncViewWorkout} />
               <PrivateRoute exact path="/loggedworkouts" component={asyncLoggedWorkouts} />
+              <PrivateRoute exact path="/loggedworkouts/:workoutid" component={asyncViewLoggedWorkout} />
               <Route component={asyncHome} />
             </Switch>
           </div>
