@@ -1,0 +1,14 @@
+.exerciseTemplate {
+    display: flex;
+
+    &-heading {
+        margin: 5px 0 5px 0;
+    }
+
+    &-delete {
+        margin-right: 10px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+        border-radius: 50%;
+    }
+}

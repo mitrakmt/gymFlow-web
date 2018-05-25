@@ -44,7 +44,6 @@ class Home extends Component {
 }
 
 function mapStateToProps({ auth }) {
-    console.log('profile', auth.profile)
     return { auth };
 }
 

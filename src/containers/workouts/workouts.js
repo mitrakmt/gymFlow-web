@@ -40,7 +40,7 @@ class Workouts extends Component {
         <h1>Workouts</h1>
         {
             this.props.workouts.data.workouts.map(workout => (
-                <h1>{workout.name}</h1>
+                <Link to={`/workouts/${workout.id}`} key={`workouts-${workout.id}`}><h1>{workout.name}</h1></Link>
             ))
         }
         {
@@ -52,7 +52,6 @@ class Workouts extends Component {
 }
 
 function mapStateToProps({ auth, workouts }) {
-    console.log('workouts', workouts)
   return { auth, workouts };
 }
 

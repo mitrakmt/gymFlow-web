@@ -32,8 +32,6 @@ class PrivateRoute extends Component {
 
   componentWillMount() {
     this.authenticated = getAuth();
-    // TODO: need to validate token here too
-    console.log('this.authenticated', this.authenticated)
     if (this.authenticated.hasValidToken) {
       this.props.dispatch(getUserInfo());
     }

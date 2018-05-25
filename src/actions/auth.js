@@ -153,8 +153,6 @@ import {
         Authorization: `${accessToken}`
       }
     };
-
-    console.log('logging out')
   
     return callApiWithJWT(
       config,

@@ -43,8 +43,8 @@ class Profile extends Component {
   }
 }
 
-function mapStateToProps({ auth }) {
-  return { auth };
+function mapStateToProps({ auth, user }) {
+  return { auth, user };
 }
 
 export default connect(mapStateToProps)(Profile);
