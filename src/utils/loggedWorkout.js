@@ -13,3 +13,18 @@ export function getLoggedWorkout(workoutId) {
     return request(config)
       .then(status => status)
 }
+
+export function finalizeCompleteWorkout(workoutId) {
+  const config = {
+    url: `/loggedWorkout/${workoutId}`,
+    method: 'POST',
+    header: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    data: {}
+  };
+
+  return request(config)
+    .then(status => status)
+}

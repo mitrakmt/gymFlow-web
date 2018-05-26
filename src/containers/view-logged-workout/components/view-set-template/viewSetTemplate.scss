@@ -2,4 +2,12 @@
     padding: 20px;
     border: 1px solid black;
     border-radius: 5px;
+    display: flex;
+
+    &-completedCheckbox {
+        margin: 8px;
+        padding: 5px;
+        width: 10px;
+        height: 10px;
+    }
 }

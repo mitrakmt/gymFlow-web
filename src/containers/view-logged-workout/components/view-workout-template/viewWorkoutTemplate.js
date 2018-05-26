@@ -5,7 +5,7 @@ import ViewSetTemplate from '../view-set-template/viewSetTemplate';
 
 import './viewWorkoutTemplate.css';
 
-const ViewWorkoutTemplate = ({ workout, workoutName }) => {
+const ViewWorkoutTemplate = ({ workout, workoutName, completeSet, workoutId }) => {
     return (
         <div className="viewWorkoutTemplate">
             {
@@ -14,6 +14,7 @@ const ViewWorkoutTemplate = ({ workout, workoutName }) => {
                         <ViewSetTemplate
                             set={set}
                             workoutName={workoutName}
+                            completeSet={completeSet}
                         />
                     </div>
                 ))
