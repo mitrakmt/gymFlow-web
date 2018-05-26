@@ -14,6 +14,25 @@ export function getWorkout(workoutId) {
       .then(status => status)
 }
 
+export function beginWorkout(workout, name, parentWorkoutId) {
+  const config = {
+    url: `/loggedWorkout`,
+    method: 'POST',
+    header: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    data: {
+      workout,
+      name,
+      parentWorkoutId
+    }
+  };
+
+  return request(config)
+    .then(status => status)
+}
+
 // This is used on the backend, can use on FE as well if we want
 export function validateWorkoutSchema(workout) {
   // check top level value types
@@ -41,7 +60,7 @@ export function validateWorkoutSchema(workout) {
     }
 
     // Check for set ID and type of number
-    if (!workout[setIndex].id || typeof workout[setIndex].id !== 'number') {
+    if (workout[setIndex].id === undefined || typeof workout[setIndex].id !== 'number') {
       return {
         error: "Each set must contain an ID that is of type number"
       }
@@ -57,7 +76,7 @@ export function validateWorkoutSchema(workout) {
     // Loop through and check exercise schema
     for (let exerciseIndex = 0; exerciseIndex < workout[setIndex].exercises.length; exerciseIndex++) {
       // Check for IDs and type of number
-      if (!workout[setIndex].exercises[exerciseIndex].id || typeof workout[setIndex].exercises[exerciseIndex].id !== 'number') {
+      if (workout[setIndex].exercises[exerciseIndex].id === undefined || typeof workout[setIndex].exercises[exerciseIndex].id !== 'number') {
         return {
           error: "Each excersize must contain an ID that is of type number"
         }

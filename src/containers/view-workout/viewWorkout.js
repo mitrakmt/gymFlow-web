@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { getWorkout } from 'utils/workout';
+import { getWorkout, beginWorkout } from 'utils/workout';
 import { saveWorkout } from 'actions/workouts';
 
 import ViewWorkoutTemplate from './components/view-workout-template/viewWorkoutTemplate';
@@ -38,6 +38,7 @@ class ViewWorkout extends Component {
     getWorkout(workoutId)
       .then(response => {
         this.setState({
+          workoutId: response.id,
           workout: response.workout,
           workoutName: response.name
         })
@@ -45,10 +46,10 @@ class ViewWorkout extends Component {
   }
 
   startWorkout = () => {
-    let path = this.props.location.pathname;
-    let workoutId = path.slice(10)
-
-    // TODO: begin workout
+    beginWorkout(this.state.workout, this.state.workoutName, this.state.workoutId)
+      .then(response => {
+        this.context.router.history.push(`/loggedworkout/${response.id}`);
+      })
   }
 
   render() {

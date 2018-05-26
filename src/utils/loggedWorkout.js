@@ -12,4 +12,4 @@ export function getLoggedWorkout(workoutId) {
   
     return request(config)
       .then(status => status)
-  }
+}
