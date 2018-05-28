@@ -43,7 +43,7 @@ class Signup extends Component {
 
     componentWillMount() {
         if (localStorage.getItem('access_token')) {
-        this.context.router.history.push('/home');
+        this.context.router.history.push('/');
         }
     }
 
@@ -54,10 +54,10 @@ class Signup extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.profile) {
             try {
-                const redirect = this.props.location.state.from.pathname || '/home';
+                const redirect = this.props.location.state.from.pathname || '/';
                 this.context.router.history.push(redirect);
             } catch (err) {
-                this.context.router.history.push('/home');
+                this.context.router.history.push('/');
             }
         }
     }
@@ -146,66 +146,51 @@ class Signup extends Component {
 
   render() {
     return (
-      <div className="login">
-        <div className="form-container">
-            <div className="login__input-container">
-              { /* fake fields are a workaround for chrome autofill getting the wrong fields */}
-              { /* see http://stackoverflow.com/questions/15738259/disabling-chrome-autofill */}
-              <input style={{ display: 'none' }} type="email" name="email" />
-              <input style={{ display: 'none' }} type="password" name="password" />
-
-              <input
+        <div className="signup" autoComplete="off">
+            <h1 className="signup-heading">Welcome!</h1>
+            <input
                 id="email"
-                className="login-input-text"
-                floatingLabelText="Email"
-                onKeyPress={this.handleKeyPress}
-                hintText="john.smith@gmail.com"
+                className="signup-input"
+                placeholder="Email"
                 value={this.state.email}
                 onChange={this.updateEmail}
-                onBlur={this.emailTouched}
-                type="email"
-                errorText={this.state.emailError}
-                fullWidth
-              />
-              <input
-                id="username"
-                className="login-input-text"
-                floatingLabelText="Username"
                 onKeyPress={this.handleKeyPress}
-                hintText="yourUsername"
+                onBlur={this.emailTouched}
+                autoComplete="email"
+                type="email"
+            />
+            <input
+                id="username"
+                className="signup-input"
+                placeholder="Username"
+                autoComplete="username"
                 value={this.state.username}
                 onChange={this.updateUsername}
+                onKeyPress={this.handleKeyPress}
+                onBlur={this.emailTouched}
                 type="username"
-                errorText={this.state.usernameError}
-                fullWidth
-              />
-              <input
+            />
+            <input
                 id="password"
-                className="login-input-text"
-                floatingLabelText="Password"
+                className="signup-input"
+                autoComplete="password"
+                placeholder="Password"
                 onKeyPress={this.handleKeyPress}
                 onChange={this.inputChanged}
                 type="password"
-                fullWidth
-              />
-              {
-                (this.props.auth.loginError) &&
-                <p className="color-warning">Incorrect email or password</p>
-              }
-              <button
-                disabled={this.state.signingUp}
-                className="login__button"
-                label="Login"
-                secondary={false}
-                onTouchTap={this.handleSignup}
-                fullWidth
-              />
+            />
+            <button
+                disabled={this.state.loggingIn}
+                className="signup-submit"
+                label="Signup"
+                onTouchTap={this.handleLogin}
+            >
+                Signup
+            </button>
+            <div className="signup-textLinks">
+                <p className="link"><Link to="/login">Login</Link></p>
             </div>
-            <span className="login-inputContainer-textLinks">
-              <p className=""><Link to="/login">Sign In</Link></p>
-            </span>
         </div>
-      </div>
     );
   }
 }

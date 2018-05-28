@@ -126,17 +126,14 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-          <h1 className="login-heading">Welcome</h1>
-          { /* fake fields are a workaround for chrome autofill getting the wrong fields */}
-          { /* see http://stackoverflow.com/questions/15738259/disabling-chrome-autofill */}
-          <input style={{ display: 'none' }} type="email" name="email" />
-          <input style={{ display: 'none' }} type="password" name="password" />
+          <h1 className="login-heading">Welcome back!</h1>
           <input
             id="email"
             className="login-input"
             placeholder="Email"
             value={this.state.email}
             onChange={this.updateEmail}
+            autoComplete="email"
             onKeyPress={this.handleKeyPress}
             onBlur={this.emailTouched}
             type="email"
@@ -145,6 +142,7 @@ class Login extends Component {
             id="password"
             className="login-input"
             placeholder="Password"
+            autoComplete="password"
             onKeyPress={this.handleKeyPress}
             onChange={this.inputChanged}
             type="password"
