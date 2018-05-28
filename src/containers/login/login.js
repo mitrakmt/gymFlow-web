@@ -126,53 +126,46 @@ class Login extends Component {
   render() {
     return (
       <div className="login">
-        <div className="form-container">
-            <div className="login__input-container">
-              { /* fake fields are a workaround for chrome autofill getting the wrong fields */}
-              { /* see http://stackoverflow.com/questions/15738259/disabling-chrome-autofill */}
-              <input style={{ display: 'none' }} type="email" name="email" />
-              <input style={{ display: 'none' }} type="password" name="password" />
-
-              <input
-                id="email"
-                className="login-input-text"
-                floatingLabelText="Email"
-                onKeyPress={this.handleKeyPress}
-                hintText="john.smith@gmail.com"
-                value={this.state.email}
-                onChange={this.updateEmail}
-                onBlur={this.emailTouched}
-                type="email"
-                errorText={this.state.emailError}
-                fullWidth
-              />
-              <input
-                id="password"
-                className="login-input-text"
-                floatingLabelText="Password"
-                onKeyPress={this.handleKeyPress}
-                onChange={this.inputChanged}
-                type="password"
-                fullWidth
-              />
-              {
-                (this.props.auth.loginError) &&
-                <p className="color-warning">Incorrect email or password</p>
-              }
-              <button
-                disabled={this.state.loggingIn}
-                className="login__button"
-                label="Login"
-                onTouchTap={this.handleLogin}
-                fullWidth
-              />
-            </div>
-            <span className="login-inputContainer-textLinks">
-              <p className="createAccountString"><Link to="/signup">Create Account</Link></p>
-              <p><Link to="/passwordreset/request">Forgot Password</Link></p>
-            </span>
+          <h1 className="login-heading">Welcome</h1>
+          { /* fake fields are a workaround for chrome autofill getting the wrong fields */}
+          { /* see http://stackoverflow.com/questions/15738259/disabling-chrome-autofill */}
+          <input style={{ display: 'none' }} type="email" name="email" />
+          <input style={{ display: 'none' }} type="password" name="password" />
+          <input
+            id="email"
+            className="login-input"
+            placeholder="Email"
+            value={this.state.email}
+            onChange={this.updateEmail}
+            onKeyPress={this.handleKeyPress}
+            onBlur={this.emailTouched}
+            type="email"
+          />
+          <input
+            id="password"
+            className="login-input"
+            placeholder="Password"
+            onKeyPress={this.handleKeyPress}
+            onChange={this.inputChanged}
+            type="password"
+          />
+          {
+            this.props.auth.loginError &&
+              <p className="color-warning">Incorrect email or password</p>
+          }
+          <button
+            disabled={this.state.loggingIn}
+            className="login-submit"
+            label="Login"
+            onTouchTap={this.handleLogin}
+          >
+            Login
+          </button>
+          <div className="login-textLinks">
+            <p className="link"><Link to="/signup">Create Account</Link></p>
+            <p className="link"><Link to="/passwordreset/request">Forgot Password</Link></p>
+          </div>
         </div>
-      </div>
     );
   }
 }
