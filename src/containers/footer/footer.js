@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import './footer.css';
@@ -29,7 +30,11 @@ class Footer extends Component {
     render() {
         return (
             <div className="footer">
-                
+                <div className="footer-navLinks">
+                    <Link to={"/"}><p className="footer-navLinks-text">Home</p></Link>
+                    <Link to={"/contact"}><p className="footer-navLinks-text">Contact</p></Link>
+                    <Link to={"/jobs"}><p className="footer-navLinks-text">Jobs</p></Link>
+                </div>
             </div>
         );
     }
