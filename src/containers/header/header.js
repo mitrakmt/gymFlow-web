@@ -38,24 +38,26 @@ class Header extends Component {
     render() {
         return (
             <div className="header" role="navigation">
-                <Link to={"/"}><p className="header-navLinks">Home</p></Link>
-                {
-                    this.props.auth.profile &&
-                        <div className="header-navLinks-row">
-                            <Link to={"/workouts"}><p className="header-navLinks">Workouts</p></Link>
-                            <Link to={"/loggedworkouts"}><p className="header-navLinks">Logged Workouts</p></Link>
-                        </div>
-                }
+                <div className="header-navLinks">
+                    <Link to={"/"}><p className="header-navLinks-text">Home</p></Link>
+                    {
+                        this.props.auth.profile &&
+                            <div className="header-navLinks-row">
+                                <Link to={"/workouts"}><p className="header-navLinks-text">Workouts</p></Link>
+                                <Link to={"/loggedworkouts"}><p className="header-navLinks-text">Logged Workouts</p></Link>
+                            </div>
+                    }
+                </div>
                 <div className="header-authActions">
                     {
                         this.props.auth.profile ?
                             <div className="header-navLinks-row">
-                                <Link to={"/profile"}><p className="header-navLinks">My Profile</p></Link>
-                                <p className="header-navLinks" onClick={this.logout}>Logout</p>
+                                <Link to={"/profile"}><p className="header-navLinks-text">My Profile</p></Link>
+                                <p className="header-navLinks-text" onClick={this.logout}>Logout</p>
                             </div> :
                             <div className="header-navLinks-row">
-                                <Link to={"/login"}><p className="header-navLinks">Login</p></Link>
-                                <Link to={"/signup"}><p className="header-navLinks">Signup</p></Link>
+                                <Link to={"/login"}><p className="header-navLinks-text">Login</p></Link>
+                                <Link to={"/signup"}><p className="header-navLinks-text">Signup</p></Link>
                             </div>
                     }
                 </div>
