@@ -31,6 +31,7 @@ const asyncLoggedWorkouts = asyncLoader(() => require('../../containers/logged-w
 const asyncCreateWorkout = asyncLoader(() => require('../../containers/create-workout/createWorkout'));
 const asyncViewWorkout = asyncLoader(() => require('../../containers/view-workout/viewWorkout'));
 const asyncViewLoggedWorkout = asyncLoader(() => require('../../containers/view-logged-workout/viewLoggedWorkout'));
+const asyncContact = asyncLoader(() => require('../../containers/contact/contact'));
 
 class App extends Component {
   static propTypes = {
@@ -70,6 +71,7 @@ class App extends Component {
               <Route path="/signup" component={asyncSignup} />
               <Route path="/emailvalidation/:token" component={asyncEmailValidation} />
               <Route path="/login" component={asyncLogin} location={this.props.location} />
+              <Route path="/contact" component={asyncContact} />
               <Route path="/passwordreset" component={asyncPasswordReset} />
               <PrivateRoute path="/profile" component={asyncProfile} />
               <PrivateRoute exact path="/profile/:username" component={asyncProfile} />
