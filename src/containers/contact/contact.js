@@ -63,26 +63,34 @@ class Contact extends Component {
                     <h1>Contact</h1>
                     <div className="contact-detailsRow">
                         <div className="contact-inputContainer">
+                            <label className="label">Name</label>
                             <input
                                 className="contact-input"
-                                id="name" placeholder="Name"
+                                id="name"
                                 value={this.state.name}
                                 onChange={this.updateState}
-                                type="text" required
+                                type="text"
+                                required
                             />
+                            <span className="highlight"></span>
+                            <span className="bar"></span>
                         </div>
                         <div className="contact-inputContainer">
+                            <label className="label">Email</label>
                             <input
                                 className="contact-input"
                                 id="email"
-                                placeholder="Email"
                                 value={this.state.email}
                                 onChange={this.updateState}
-                                type="email" required
+                                type="email" 
+                                required
                             />
+                            <span className="highlight"></span>
+                            <span className="bar"></span>
                         </div>
                     </div>
                     <div className="contact-inputContainer">
+                        <label className="label">Message</label>
                         <textarea
                             rows="4"
                             cols="50"
@@ -90,9 +98,10 @@ class Contact extends Component {
                             id="message"
                             value={this.state.message}
                             onChange={this.updateState}
-                            placeholder="Type your message here!"
                             required
                         />
+                        <span className="highlight"></span>
+                        <span className="bar"></span>
                     </div>
                     <button className="contact-submit" onClick={this.contact}>Submit</button>
                 </div>

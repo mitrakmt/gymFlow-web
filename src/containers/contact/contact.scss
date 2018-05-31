@@ -6,13 +6,6 @@
     justify-content: center;
     align-items: center;
 
-	overflow: hidden;
-    background: #50a3a2;
-    background: -webkit-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: -moz-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: -o-linear-gradient(top left, #50a3a2 0%, #53e3a6 100%);
-    background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
-
     &-container {
         width: 80%;
         margin: 0 auto;
@@ -21,12 +14,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
+        padding: 50px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 15px;
     }
 
     &-detailsRow {
         display: flex;
         justify-content: space-between;
-        color: white;
 
         .contact-inputContainer {
             &:first-child {
@@ -40,27 +35,79 @@
         flex-direction: column;
         width: 100%;
         margin: 50px 0;
+
+        position: relative; 
+        margin-bottom: 45px; 
+
+        .label {
+            font-size: 14px;
+            color: gray;
+        }
+
+        .bar {
+            position: relative;
+            display: block;
+            width: 100%;
+        }
+        .bar:before, .bar:after {
+            content:'';
+            height: 1px; 
+            width: 0;
+            position: absolute;
+            background:#91D6AC;
+            transition: 0.2s ease all; 
+        }
+        .bar:before {
+            left: 50%;
+        }
+        .bar:after {
+            right: 50%; 
+        }
+
+        /* active state for input */
+        input:focus ~ .bar:before, input:focus ~ .bar:after {
+            width: 50%;
+        }
+
+        .highlight {
+            position: absolute;
+            height: 60%; 
+            width: 100%; 
+            top: 25%; 
+            left: 0;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        input:focus ~ label, input:valid ~ label {
+            top: -20px;
+            font-size: 14px;
+            color: #91D6AC;
+        }
+          
+        /* active state for textarea */
+        textarea:focus ~ .bar:before, textarea:focus ~ .bar:after {
+            width: 50%;
+        }
+
+        textarea:focus ~ label, textarea:valid ~ label {
+            top: -20px;
+            font-size: 14px;
+            color: #91D6AC;
+        }
     }
 
     &-input {
+        font-size: 18px;
+        background: transparent;
+        padding: 10px 5px;
+        display: block;
+        width: 100%;
         border: none;
-        border-bottom: 1px solid white;
-        outline: none;
-        transition-duration: 0.2s;
-        padding-left: 0;
-        font-size: 16px;
-        padding: 10px;
-        font-weight: 300;
-        background-color: transparent;
-        color: white;
-
-        &::placeholder {
-            color: white;
-        }
+        border-bottom: 1px solid #757575;
 
         &:focus {
-            border-bottom: 2px solid teal;
-            font-weight: 500;
+            outline: none;
         }
     }
 
