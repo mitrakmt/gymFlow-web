@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 export default class ScrollToTop extends Component {
   componentDidMount() {
@@ -9,15 +9,11 @@ export default class ScrollToTop extends Component {
   }
 
   render() {
-    return (
-      <div>
-        {this.props.children}
-      </div>
-    );
+    return <div>{this.props.children}</div>;
   }
 }
 
 ScrollToTop.propTypes = {
   history: PropTypes.object.isRequired,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.object.isRequired
 };

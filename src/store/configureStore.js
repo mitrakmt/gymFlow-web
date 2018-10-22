@@ -1,12 +1,15 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { createStore, applyMiddleware, combineReducers, compose } from "redux";
+import thunkMiddleware from "redux-thunk";
 // import { createLogger } from 'redux-logger';
 // Reducers
-import auth from '../reducers/auth';
-import user from '../reducers/user';
-import workouts from '../reducers/workouts';
-import loggedWorkouts from '../reducers/loggedWorkouts';
-import { requestPasswordReset, submitPasswordReset } from '../reducers/password-reset';
+import auth from "../reducers/auth";
+import user from "../reducers/user";
+import workouts from "../reducers/workouts";
+import loggedWorkouts from "../reducers/loggedWorkouts";
+import {
+  requestPasswordReset,
+  submitPasswordReset
+} from "../reducers/password-reset";
 
 // const logger = createLogger();
 /**
@@ -20,14 +23,14 @@ const rootReducer = combineReducers({
   workouts,
   loggedWorkouts,
   requestPasswordReset,
-  submitPasswordReset,
+  submitPasswordReset
 });
 const initialState = {};
 
-const addPromiseSupportToDispatch = (store) => {
+const addPromiseSupportToDispatch = store => {
   const rawDispatch = store.dispatch;
-  return (action) => {
-    if (typeof action.then === 'function') {
+  return action => {
+    if (typeof action.then === "function") {
       return action.then(rawDispatch);
     }
     return rawDispatch(action);
@@ -54,7 +57,10 @@ export default function configureStore() {
     store = createStore(
       rootReducer,
       initialState,
-      compose(applyMiddleware(thunkMiddleware), f => f)
+      compose(
+        applyMiddleware(thunkMiddleware),
+        f => f
+      )
     );
   }
 

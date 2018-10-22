@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { requestPasswordReset } from 'actions/password-reset';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { requestPasswordReset } from "actions/password-reset";
 // Direct path imports
-import envelope from '../../../../images/envelope.png';
-import './request.css';
+import envelope from "../../../../images/envelope.png";
+import "./request.css";
 
 class Request extends Component {
   static get propTypes() {
@@ -21,7 +21,7 @@ class Request extends Component {
     this.handleEmailSubmit = this.handleEmailSubmit.bind(this);
 
     this.state = {
-      email: '',
+      email: "",
       sentRecoveryEmail: false,
       errorDialogOpen: false,
       errorFields: {}
@@ -41,29 +41,26 @@ class Request extends Component {
     return formData;
   }
 
-  updateLocalState = () => {
-    
-  }
+  updateLocalState = () => {};
 
   /**
    * Updates the local state of Login Component.
-  */
+   */
   inputChanged(event) {
     this.updateLocalState(event, this);
   }
 
   handleEmailSubmit() {
-    this.props.dispatch(requestPasswordReset(this.state.email))
-      .then((status) => {
-        if (status.response.status === 'success') {
-          this.props.history.push({
-            pathname: '/en/passwordreset/sent',
-            state: {
-              email: this.state.email
-            }
-          });
-        }
-      });
+    this.props.dispatch(requestPasswordReset(this.state.email)).then(status => {
+      if (status.response.status === "success") {
+        this.props.history.push({
+          pathname: "/en/passwordreset/sent",
+          state: {
+            email: this.state.email
+          }
+        });
+      }
+    });
   }
 
   render() {
@@ -73,8 +70,14 @@ class Request extends Component {
           <div className="requestContainer-formContainer small-9 medium-6 large-centered column">
             <img src={envelope} alt="key" />
             <div>
-              <h4 className="requestContainer-formContainer-header">PASSWORD HELP</h4>
-              <p className="requestContainer-formContainer-subHeader">Enter the email associated with your Esports Arena account, then click Continue.  We will email you a link to a secret level where you can summon a new password.</p>
+              <h4 className="requestContainer-formContainer-header">
+                PASSWORD HELP
+              </h4>
+              <p className="requestContainer-formContainer-subHeader">
+                Enter the email associated with your Esports Arena account, then
+                click Continue. We will email you a link to a secret level where
+                you can summon a new password.
+              </p>
             </div>
             <div>
               <input
@@ -82,7 +85,7 @@ class Request extends Component {
                 className="requestContainer-input-text"
                 floatingLabelText="Email"
                 onBlur={this.inputChanged}
-                style={{ width: '300px' }}
+                style={{ width: "300px" }}
               />
               <button
                 label="Continue"
