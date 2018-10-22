@@ -1,32 +1,31 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import { saveWorkout } from 'actions/workouts';
+import { saveWorkout } from "actions/workouts";
 
-import WorkoutTemplate from './components/workout-template/workoutTemplate';
+import WorkoutTemplate from "./components/workout-template/workoutTemplate";
 
-import './createWorkout.css';
-
+import "./createWorkout.css";
 
 class CreateWorkout extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     location: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired
-  }
+  };
 
   static contextTypes = {
     router: PropTypes.object.isRequired,
     store: PropTypes.object.isRequired
-  }
+  };
 
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      workoutName: '',
+      workoutName: "",
       workout: []
     };
   }
@@ -34,38 +33,40 @@ class CreateWorkout extends Component {
   componentWillMount() {
     // TODO: generate random name
     this.setState({
-      workoutName: 'Best workout that ever was'
-    })
+      workoutName: "Best workout that ever was"
+    });
   }
 
   addSet = () => {
     let copiedWorkout = this.state.workout.slice();
     copiedWorkout.push({
       id: this.state.workout.length,
-      exercises: [{
-        id: 0,
-        name: 'name',
-        reps: 12,
-        sets: 3
-      }]
-    })
+      exercises: [
+        {
+          id: 0,
+          name: "name",
+          reps: 12,
+          sets: 3
+        }
+      ]
+    });
     this.setState({
       workout: copiedWorkout
-    })
-  }
+    });
+  };
 
-  addExercise = (id) => {
+  addExercise = id => {
     let copiedWorkout = this.state.workout.slice();
     copiedWorkout[id].exercises.push({
       id: copiedWorkout[id].exercises.length,
-      name: 'name',
+      name: "name",
       reps: 12,
       sets: 3
-    })
+    });
     this.setState({
       workout: copiedWorkout
-    })
-  }
+    });
+  };
 
   updateExercise = (setId, exerciseId, exercise) => {
     let copiedWorkout = this.state.workout.slice();
@@ -74,10 +75,10 @@ class CreateWorkout extends Component {
 
     this.setState({
       workout: copiedWorkout
-    })
-  }
+    });
+  };
 
-  deleteSet = (setId) => {
+  deleteSet = setId => {
     let copiedWorkout = this.state.workout.slice();
     copiedWorkout.splice(setId, 1);
 
@@ -87,8 +88,8 @@ class CreateWorkout extends Component {
 
     this.setState({
       workout: copiedWorkout
-    })
-  }
+    });
+  };
 
   deleteExercise = (setId, exerciseId) => {
     let copiedWorkout = this.state.workout.slice();
@@ -101,8 +102,8 @@ class CreateWorkout extends Component {
 
     this.setState({
       workout: copiedWorkout
-    })
-  }
+    });
+  };
 
   saveWorkout = () => {
     if (this.state.workoutName === "") {
@@ -112,26 +113,31 @@ class CreateWorkout extends Component {
       // TODO: error to not have empty workout
       return;
     }
-    this.props.dispatch(saveWorkout(this.state.workoutName, this.state.workout))
+    this.props
+      .dispatch(saveWorkout(this.state.workoutName, this.state.workout))
       .then(status => {
         if (status.type === "SAVE_WORKOUT_SUCCESS") {
-          this.context.router.history.push('/workouts');
+          this.context.router.history.push("/workouts");
         }
-      })
-  }
+      });
+  };
 
-  updateWorkoutName = (event) => {
+  updateWorkoutName = event => {
     this.setState({
       workoutName: event.target.value
-    })
-  }
+    });
+  };
 
   render() {
     return (
       <div className="createWorkout">
         <h1>Create workout</h1>
         <div className="createWorkout-workoutTemplate">
-          <input className="createWorkout-workoutTemplate-name" value={this.state.workoutName} onChange={this.updateWorkoutName} />
+          <input
+            className="createWorkout-workoutTemplate-name"
+            value={this.state.workoutName}
+            onChange={this.updateWorkoutName}
+          />
           <WorkoutTemplate
             addSet={this.addSet}
             workoutName={this.state.workoutName}

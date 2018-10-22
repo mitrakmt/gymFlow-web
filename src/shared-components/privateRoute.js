@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Route, Redirect } from 'react-router';
-import PropTypes from 'prop-types';
-import { refreshLogin } from '../actions/auth';
-import { getAuth, getUserId } from '../utils/api';
-import { getUserInfo } from '../actions/user';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Route, Redirect } from "react-router";
+import PropTypes from "prop-types";
+import { refreshLogin } from "../actions/auth";
+import { getAuth, getUserId } from "../utils/api";
+import { getUserInfo } from "../actions/user";
 
 class PrivateRoute extends Component {
   static get contextTypes() {
@@ -43,18 +43,18 @@ class PrivateRoute extends Component {
     return (
       <Route
         {...this.props.rest}
-        render={props => (
+        render={props =>
           this.authenticated.hasValidToken ? (
             <ChildComponent {...props} />
           ) : (
-              <Redirect // eslint-disable-line
-                to={{
-                  pathname: '/login',
-                  state: { from: props.location } // eslint-disable-line react/prop-types
-                }}
-              />
-            )
-        )}
+            <Redirect // eslint-disable-line
+              to={{
+                pathname: "/login",
+                state: { from: props.location } // eslint-disable-line react/prop-types
+              }}
+            />
+          )
+        }
       />
     );
   }

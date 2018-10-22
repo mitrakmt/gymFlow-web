@@ -1,17 +1,15 @@
 /**
  * Contents
  */
-import _omitBy from 'lodash/omitBy';
-import _isNil from 'lodash/isNil';
-import {
-  callApiWithJWT
-} from '../utils/api';
+import _omitBy from "lodash/omitBy";
+import _isNil from "lodash/isNil";
+import { callApiWithJWT } from "../utils/api";
 
-export const POST_USER_REQUEST = 'POST_USER_REQUEST';
-export const POST_USER_SUCCESS = 'POST_USER_SUCCESS';
-export const POST_USER_FAILURE = 'POST_USER_FAILURE';
-export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
-export const CLEAR_USER = 'CLEAR_USER';
+export const POST_USER_REQUEST = "POST_USER_REQUEST";
+export const POST_USER_SUCCESS = "POST_USER_SUCCESS";
+export const POST_USER_FAILURE = "POST_USER_FAILURE";
+export const SAVE_USER_SUCCESS = "SAVE_USER_SUCCESS";
+export const CLEAR_USER = "CLEAR_USER";
 
 /**
  * Updates the user's info.
@@ -20,13 +18,13 @@ export const CLEAR_USER = 'CLEAR_USER';
  */
 export function saveUserInfo({ ...userInfo }) {
   // Remove any null, undefined, or empty strings from the request object
-  const strippedObject = _omitBy(userInfo, val => _isNil(val) || val === '');
+  const strippedObject = _omitBy(userInfo, val => _isNil(val) || val === "");
   const config = {
-    url: '/user',
-    method: 'patch',
+    url: "/user",
+    method: "patch",
     header: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json"
     },
     data: strippedObject
   };
@@ -41,11 +39,11 @@ export function saveUserInfo({ ...userInfo }) {
 
 export function getUserInfo() {
   const config = {
-    url: '/user',
-    method: 'GET',
+    url: "/user",
+    method: "GET",
     header: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
+      Accept: "application/json",
+      "Content-Type": "application/json"
     }
   };
 
@@ -63,7 +61,6 @@ export function clearUserInfo() {
     data: {}
   };
 }
-
 
 function userInfoFailure(error) {
   return {
@@ -85,4 +82,3 @@ function userInfoSuccess(user) {
     user
   };
 }
-

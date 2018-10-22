@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 /**
  * Loads a given component asynchronously. This will be used by
@@ -37,9 +37,7 @@ export default function asyncComponent(importComponent) {
     render() {
       const RenderComponent = this.state.component;
 
-      return RenderComponent
-        ? <RenderComponent {...this.props} />
-        : null;
+      return RenderComponent ? <RenderComponent {...this.props} /> : null;
     }
   }
 
