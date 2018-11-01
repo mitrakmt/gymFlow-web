@@ -5,6 +5,7 @@ import thunkMiddleware from "redux-thunk";
 import auth from "../reducers/auth";
 import user from "../reducers/user";
 import workouts from "../reducers/workouts";
+import influencer from "../reducers/influencer";
 import loggedWorkouts from "../reducers/loggedWorkouts";
 import {
   requestPasswordReset,
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   workouts,
   loggedWorkouts,
   requestPasswordReset,
-  submitPasswordReset
+  submitPasswordReset,
+  influencer
 });
 const initialState = {};
 

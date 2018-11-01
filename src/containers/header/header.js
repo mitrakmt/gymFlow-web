@@ -50,6 +50,9 @@ class Header extends Component {
               <Link to={"/loggedworkouts"}>
                 <p className="header-navLinks-text">Logged Workouts</p>
               </Link>
+              <Link to={"/influencers"}>
+                <p className="header-navLinks-text">Influencers</p>
+              </Link>
             </div>
           )}
         </div>
