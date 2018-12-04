@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { getInfluencers } from "actions/influencers";
+import { getActivity } from "actions/activity";
 
-import "./influencers.css";
+import "./activity.css";
 
-class Influencers extends Component {
+class Activity extends Component {
   static defaultProps = {
     user: null
   };
@@ -30,26 +30,20 @@ class Influencers extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(getInfluencers());
+    this.props.dispatch(getActivity());
   }
 
   render() {
     return (
-      <div className="influencers">
-        <h1>Influencers</h1>
-        {this.props.influencer.data.influencers.map(influencer => (
-          <div>
-            <h1>{influencer.username}</h1>
-          </div>
-        ))}
+      <div className="activity">
+        <h1>Activity</h1>
       </div>
     );
   }
 }
 
-function mapStateToProps({ auth, influencer }) {
-  console.log("influencer", influencer);
-  return { auth, influencer };
+function mapStateToProps({ auth, activity }) {
+  return { auth, activity };
 }
 
-export default connect(mapStateToProps)(Influencers);
+export default connect(mapStateToProps)(Activity);

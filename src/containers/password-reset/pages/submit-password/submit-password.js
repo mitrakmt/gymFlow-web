@@ -202,7 +202,7 @@ class SubmitPassword extends Component {
                 this.state.passwordLengthValidation &&
                 "submitPasswordContainer-formContainer-submitButton-show"}`}
               label={"Continue"}
-              onTouchTap={this.handlePasswordSubmit}
+              onClick={this.handlePasswordSubmit}
               secondary={false}
             />
           </div>

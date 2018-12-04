@@ -55,6 +55,12 @@ const asyncContact = asyncLoader(() =>
 const asyncInfluencers = asyncLoader(() =>
   require("../../containers/influencers/influencers")
 );
+const asyncActivity = asyncLoader(() =>
+  require("../../containers/activity/activity")
+);
+const asyncInfluencer = asyncLoader(() =>
+  require("../../containers/influencer/influencer")
+);
 
 class App extends Component {
   static propTypes = {
@@ -109,11 +115,6 @@ class App extends Component {
                 path="/profile/:username"
                 component={asyncProfile}
               />
-              <PrivateRoute
-                exact
-                path="/influencers"
-                component={asyncInfluencers}
-              />
               <PrivateRoute exact path="/workouts" component={asyncWorkouts} />
               <PrivateRoute
                 exact
@@ -135,6 +136,17 @@ class App extends Component {
                 path="/loggedworkouts/:workoutid"
                 component={asyncViewLoggedWorkout}
               />
+              <PrivateRoute
+                exact
+                path="/influencers"
+                component={asyncInfluencers}
+              />
+              <PrivateRoute
+                exact
+                path="/influencers/:influencerid"
+                component={asyncInfluencer}
+              />
+              <PrivateRoute exact path="/activity" component={asyncActivity} />
               <Route component={asyncHome} />
             </Switch>
           </div>

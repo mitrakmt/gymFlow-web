@@ -5,14 +5,14 @@ import _omitBy from "lodash/omitBy";
 import _isNil from "lodash/isNil";
 import { callApiWithJWT } from "../utils/api";
 
-export const GET_INFLUENCERS_REQUEST = "GET_INFLUENCERS_REQUEST";
-export const GET_INFLUENCERS_SUCCESS = "GET_INFLUENCERS_SUCCESS";
-export const GET_INFLUENCERS_FAILURE = "GET_INFLUENCERS_FAILURE";
-export const CLEAR_INFLUENCERS = "CLEAR_INFLUENCERS";
+export const GET_INFLUENCER_REQUEST = "GET_INFLUENCER_REQUEST";
+export const GET_INFLUENCER_SUCCESS = "GET_INFLUENCER_SUCCESS";
+export const GET_INFLUENCER_FAILURE = "GET_INFLUENCER_FAILURE";
+export const CLEAR_INFLUENCER = "CLEAR_INFLUENCER";
 
-export function getInfluencers() {
+export function getInfluencer(influencerId) {
   const config = {
-    url: "/influencer",
+    url: `/influencer/${influencerId}`,
     method: "GET",
     header: {
       Accept: "application/json",
@@ -22,34 +22,34 @@ export function getInfluencers() {
 
   return callApiWithJWT(
     config,
-    getInfluencersRequest,
-    getInfluencersSuccess,
-    getInfluencersFailure
+    getInfluencerRequest,
+    getInfluencerSuccess,
+    getInfluencerFailure
   );
 }
 
-export function clearInfluencers() {
+export function clearInfluencer() {
   return {
-    type: CLEAR_INFLUENCERS
+    type: CLEAR_INFLUENCER
   };
 }
 
-function getInfluencersRequest() {
+function getInfluencerRequest() {
   return {
-    type: GET_INFLUENCERS_REQUEST
+    type: GET_INFLUENCER_REQUEST
   };
 }
 
-function getInfluencersSuccess(influencers) {
+function getInfluencerSuccess(influencer) {
   return {
-    type: GET_INFLUENCERS_SUCCESS,
-    influencers
+    type: GET_INFLUENCER_SUCCESS,
+    influencer
   };
 }
 
-function getInfluencersFailure(error) {
+function getInfluencerFailure(error) {
   return {
-    type: GET_INFLUENCERS_FAILURE,
+    type: GET_INFLUENCER_FAILURE,
     error: error,
     errorMessage: error.error
   };

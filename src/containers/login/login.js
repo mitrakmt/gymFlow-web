@@ -159,7 +159,7 @@ class Login extends Component {
           disabled={this.state.loggingIn}
           className="login-submit"
           label="Login"
-          onTouchTap={this.handleLogin}
+          onClick={this.handleLogin}
         >
           Login
         </button>

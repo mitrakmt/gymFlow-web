@@ -1,8 +1,17 @@
 .loggedInHome {
-    height: 100%;
-    padding: 30px;
+  height: 100%;
+  padding: 30px;
 
-    &-heading {
-        margin: 0;
-    }
+  &-heading {
+    margin: 0;
+  }
+  &-trendingInfluencers {
+    padding: 20px 0;
+  }
+  &-myActivity {
+    padding: 20px 0;
+  }
+  &-recommendations {
+    padding: 20px 0;
+  }
 }

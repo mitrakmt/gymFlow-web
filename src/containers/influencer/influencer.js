@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { getInfluencers } from "actions/influencers";
+import { getInfluencer } from "actions/influencer";
 
-import "./influencers.css";
+import "./influencer.css";
 
-class Influencers extends Component {
+class Influencer extends Component {
   static defaultProps = {
     user: null
   };
@@ -30,18 +30,13 @@ class Influencers extends Component {
   }
 
   componentWillMount() {
-    this.props.dispatch(getInfluencers());
+    this.props.dispatch(getInfluencer());
   }
 
   render() {
     return (
-      <div className="influencers">
-        <h1>Influencers</h1>
-        {this.props.influencer.data.influencers.map(influencer => (
-          <div>
-            <h1>{influencer.username}</h1>
-          </div>
-        ))}
+      <div className="influencer">
+        <h1>Influencer</h1>
       </div>
     );
   }
@@ -52,4 +47,4 @@ function mapStateToProps({ auth, influencer }) {
   return { auth, influencer };
 }
 
-export default connect(mapStateToProps)(Influencers);
+export default connect(mapStateToProps)(Influencer);

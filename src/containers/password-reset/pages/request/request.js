@@ -89,7 +89,7 @@ class Request extends Component {
               />
               <button
                 label="Continue"
-                onTouchTap={this.handleEmailSubmit}
+                onClick={this.handleEmailSubmit}
                 secondary={false}
               />
             </div>

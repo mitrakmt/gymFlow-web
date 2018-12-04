@@ -6,6 +6,8 @@ import auth from "../reducers/auth";
 import user from "../reducers/user";
 import workouts from "../reducers/workouts";
 import influencer from "../reducers/influencer";
+import influencers from "../reducers/influencers";
+import activity from "../reducers/activity";
 import loggedWorkouts from "../reducers/loggedWorkouts";
 import {
   requestPasswordReset,
@@ -25,7 +27,9 @@ const rootReducer = combineReducers({
   loggedWorkouts,
   requestPasswordReset,
   submitPasswordReset,
-  influencer
+  influencer,
+  influencers,
+  activity
 });
 const initialState = {};
 
